@@ -4,7 +4,7 @@
 var sly;
 jQuery(function ($) {
     'use strict';
-
+// $("#demo").
     // ==========================================================================
     //   Header example
     // ==========================================================================
@@ -12,7 +12,7 @@ jQuery(function ($) {
     var $frame = $example.find('.frame');
     sly = new Sly($frame, {
         horizontal: 1,
-        itemNav: 'forceCentered',
+        itemNav: 'centered',
         activateMiddle: 1,
         smart: 1,
         activateOn: 'click',
@@ -20,8 +20,10 @@ jQuery(function ($) {
         touchDragging: 1,
         releaseSwing: 1,
         startAt: null,
+        swingSpeed:    0,   // Swing synchronization speed, where: 1 = instant, 0 = infinite.
         scrollBar: $example.find('.scrollBar'),
         scrollBy: 1,
+        scrollTrap:   true,
         activatePageOn: 'click',
         speed: 200,
         moveBy: 600,
@@ -31,7 +33,7 @@ jQuery(function ($) {
         clickBar: 1,
 
         //自动循环
-        cycleBy: "pages",
+        cycleBy: "items",
         cycleInterval: 1000,
         pauseOnHover: true,
         startPaused: false,
