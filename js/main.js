@@ -20,10 +20,10 @@ jQuery(function ($) {
         touchDragging: 1,
         releaseSwing: 1,
         startAt: null,
-        swingSpeed:    0,   // Swing synchronization speed, where: 1 = instant, 0 = infinite.
+        swingSpeed: 0,   // Swing synchronization speed, where: 1 = instant, 0 = infinite.
         scrollBar: $example.find('.scrollBar'),
         scrollBy: 1,
-        scrollTrap:   true,
+        scrollTrap: true,
         activatePageOn: 'click',
         speed: 200,
         moveBy: 600,
@@ -48,7 +48,6 @@ jQuery(function ($) {
     }).init();
 
 
-
     // Method calling buttons
     $example.on('click', 'button[data-action]', function () {
         var action = $(this).data('action');
@@ -65,7 +64,7 @@ jQuery(function ($) {
         }
     });
 
-    sly.on('active', function (eventName,itemIndex) {
-        console.log(eventName+"="+itemIndex);
+    sly.on('active', function (eventName, itemIndex) {
+        console.log(eventName + "=" + itemIndex);
     });
 });

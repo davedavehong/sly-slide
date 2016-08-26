@@ -241,15 +241,15 @@ sly实例中可支配元素为对象组成的数组。结构如下。
 
 ---
 
-#### moveBy(speed)
+#### #moveBy(speed)
 
 开启持续的线性运动，到达边界时或者调用`stop()`方法时停止。
 
 例程:
-
+```javascript
      sly.moveBy(300); // 每秒300px的速度向前移动
-     sly.moveby(-200); // 每秒200px的速度向后移动
-     
+     sly.moveBy(-200); // 每秒200px的速度向后移动
+```
 #### #activate(item, [immediate])
 
 激活某个item，当`smart`开启时会进行进一步的导航。
@@ -270,7 +270,7 @@ sly实例中可支配元素为对象组成的数组。结构如下。
 向Sly实例注册事件的回调函数。可用事件见Events文档。相应的有`one(eventName, callback)`方法，不过只执行一次，不会绑定。`off(eventName, [callback])`方法移除事件。
 
 例程：
-
+```javascript
     // 基础用法
     sly.on('load', function () {});
     
@@ -291,18 +291,20 @@ sly实例中可支配元素为对象组成的数组。结构如下。
             function () {}
         ]
     }); 
+```
 ---
 ### Events
 [官方文档](https://github.com/darsain/sly/blob/master/docs/Events.md)
 
 通过实例初始化时写入回调：
-
+```javascript
     var frame = new Sly('#frame', options, {
         load: fn,
         move: [fn1, fn2] // Multiple callbacks
     }).init();
-使用 .on(), .one() and .off() 方法:
-
+```    
+```javascript
+// 使用 .on(), .one() and .off() 方法:
     var frame = new Sly('#frame', options);
     
     // Register a callback to multiple events
@@ -313,7 +315,43 @@ sly实例中可支配元素为对象组成的数组。结构如下。
     
     // Initiate Sly instance
     frame.init();
+````
+---
+#### #Common arguments
+#####this
+触发事件时this的值为sly实例对象。
 
+#####1st argument
+所有回调将事件名称作为第一个形参。
+
+例程:
+```javascript
+sly.on('load', function (eventName) {
+    console.log(eventName); // 'load'
+    console.log(this.pos);  // Sly position object
+});
+```
+#### #active
+
+当新的item被激活时触发。回调函数变量：
+
+**eventName** `String` 事件名称
+
+**itemIndex** `Int` 被激活的item的序号
+例程：
+```javascript
+sly.on('active', function (eventName, itemIndex) {
+        console.log(eventName + "=" + itemIndex);
+    });
+````
+
+#### #cycle
+每次循环间隔时触发。
+
+回调函数形参：
+
+**eventName** `String` Event name.
+      
 ---
 ### Parallax
 [官方文档](https://github.com/darsain/sly/blob/master/docs/Parallax.md)
