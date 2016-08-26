@@ -14,50 +14,50 @@ sly是一个非常不错的橱窗展示控件，功能很全面，但是[官网]
 ---
 ### Html和CSS
 [官方文档](https://github.com/darsain/sly/blob/master/docs/Markup.md)
->
-    <div id="example" class="example">
-        <div class="scrollBar">
-            <div class="handle">
-                <div class="mouseArea"></div>
-            </div>
-        </div>
-        <button class="backward"><i class="icon-angle-left">往前滚动</i></button>
-        <button class="forward"><i class="icon-angle-right">往后滚动</i></button>
-        <div class="frame">
-            <ul>
-                <li class="">0</li>
-                <li class="">1</li>
-                <li class="">2</li>
-                <li class="">3</li>
-                <li class="">4</li>
-                <li class="">5</li>
-                <li class="">6</li>
-                <li class="">7</li>
-                <li class="">8</li>
-            </ul>
-        </div>
-        <div class="controls">
-            <button data-action="toStart"><i class="icon-double-angle-left"></i> 开始</button>
-            <span class="divider"></span>
-            <button class="prev"><i class="icon-angle-left"></i>上一页</button>
-            <span class="divider"></span>
-            <button data-action="add"><i class="icon-plus-sign">加加加</i></button>
-            <button data-action="remove"><i class="icon-minus-sign">减减减</i></button>
-            <span class="divider"></span>
-            <button class="next">下一个<i class="icon-angle-right"></i></button>
-            <span class="divider"></span>
-            <button data-action="toEnd">结束<i class="icon-double-angle-right"></i></button>
+```html
+<div id="example" class="example">
+    <div class="scrollBar">
+        <div class="handle">
+            <div class="mouseArea"></div>
         </div>
     </div>
-
+    <button class="backward"><i class="icon-angle-left">往前滚动</i></button>
+    <button class="forward"><i class="icon-angle-right">往后滚动</i></button>
+    <div class="frame">
+        <ul>
+            <li class="">0</li>
+            <li class="">1</li>
+            <li class="">2</li>
+            <li class="">3</li>
+            <li class="">4</li>
+            <li class="">5</li>
+            <li class="">6</li>
+            <li class="">7</li>
+            <li class="">8</li>
+        </ul>
+    </div>
+    <div class="controls">
+        <button data-action="toStart"><i class="icon-double-angle-left"></i> 开始</button>
+        <span class="divider"></span>
+        <button class="prev"><i class="icon-angle-left"></i>上一页</button>
+        <span class="divider"></span>
+        <button data-action="add"><i class="icon-plus-sign">加加加</i></button>
+        <button data-action="remove"><i class="icon-minus-sign">减减减</i></button>
+        <span class="divider"></span>
+        <button class="next">下一个<i class="icon-angle-right"></i></button>
+        <span class="divider"></span>
+        <button data-action="toEnd">结束<i class="icon-double-angle-right"></i></button>
+    </div>
+</div>
+```
 其中div.scrollBar为滚动条，button.backward和button.forward是两边的滚动按钮，div.frame是内容列表显示区域，div.controls是一些控制元素，包括但不限于滚到最前、上一个、增加一个列表元素、减少一个列表元素、下一个、滚动最后。
 
->
-    .example .frame { margin: 0 auto; width: 940px; height: 200px; line-height: 200px; overflow: hidden; text-shadow: none; }
-    .example .frame ul { list-style: none; margin: 0; padding: 0; height: 100%; font-size: 50px; }
-    .example .frame ul li { float: left; width: 190px; height: 100%; margin: 0 1px 0 0; padding: 0; background: #eee; color: #3a3c47; text-align: center; cursor: pointer; }
-    .example .frame ul li.active { color: #fff; background: #82bf4c; }
-    
+```css
+.example .frame{ margin: 0 auto; width: 940px; height: 200px; line-height: 200px; overflow: hidden; text-shadow: none; }
+.example .frame ul { list-style: none; margin: 0; padding: 0; height: 100%; font-size: 50px; }
+.example .frame ul li { float: left; width: 190px; height: 100%; margin: 0 1px 0 0; padding: 0; background: #eee; color: #3a3c47; text-align: center; cursor: pointer; }
+.example .frame ul li.active { color: #fff; background: #82bf4c; }
+``` 
 官方展示例子使用了px作为单位，实际测试过可以使用%来实现一定程度的自适应，需要对样式进行修改。
 
 ---
@@ -73,9 +73,10 @@ sly是一个非常不错的橱窗展示控件，功能很全面，但是[官网]
 [官方文档](https://github.com/darsain/sly/blob/master/docs/Options.md)
 
 这一部分控制了整个插件的运行，比较关键。本工程并未用到下文代码的所有属性，主要是汉化了。
-
+```javascript
+var frame = new Sly('#frame', {
     horizontal: 1, // 切换到横向模式
-
+    
     // 条目的基础导航
     itemNav:        centered,  // 'basic', 'centered'：“active元素不在边缘时居中”, 'forceCentered'：“始终居中”
     itemSelector:   null,  // Select only items that match this selector.
@@ -127,33 +128,32 @@ sly是一个非常不错的橱窗展示控件，功能很全面，但是[官网]
     cycleInterval: 5000,  // Delay between cycles in milliseconds.
     pauseOnHover:  false, // Pause cycling when mouse hovers over the FRAME.
     startPaused:   false, // Whether to start in paused sate.
-
+    
     // 混合选项
     moveBy:        300,     // 按住导航按钮时的移动速度
     speed:         0,       // 每毫秒动画速度，0为关闭动画
     easing:        'swing', // 渐变动画效果
     startAt:       null,    // 开始位置默认值
     keyboardNavBy: null,    // 开启键盘导航
-
+    
     // 定义html元素的class名
     draggedClass:  'dragged', // Class for dragged elements (like SLIDEE or scrollbar handle).
     activeClass:   'active',  // Class for active items and pages.
     disabledClass: 'disabled' // Class for disabled navigation elements.
-
+});
+```
 ---
 ### 属性(Properties)
 [官方文档](https://github.com/darsain/sly/blob/master/docs/Properties.md)
 
 Sly提供了一些有用可读属性。本文未翻译全部。
 
----
 #### #sly.options
 
-类型: 对象{}
+类型: `JSON对象`
 
 该对象是当前Sly实例的所有配置选项。
 
----
 #### #sly.items
 
 类型: 数组
@@ -179,25 +179,19 @@ sly实例中可支配元素为对象组成的数组。结构如下。
 
 你可以通过此属性检查实例元素是否在合适的位置。
 
----
----
 ###方法(Methods)
 
 [官方文档](https://github.com/darsain/sly/blob/master/docs/Methods.md) ,提供了丰富的方法，通过实例对象直接调用。
-
----
 
 #### #init()
 
 初始化Sly实例，即设置所需风格，绑定函数函数。可被如下链式调用：
 
 >var sly = new Sly(frame, options, callbackMap).init();
----
+
 #### #reload()
 
 重新计算元素的尺寸和位置，当sly实例元素被改变的时候调用，例如被移动、移除或者窗口重置。
-
-***
 
 #### #slideTo(position, [immediate])
 
@@ -205,8 +199,6 @@ sly实例中可支配元素为对象组成的数组。结构如下。
 
 - `position` 整数，新的滑动位置。
 - `[immediate]` 布尔值，当`true`时，不使用动画效果立即重定位。
-
-***
 
 #### #slideBy(delta, [immediate])
 
@@ -232,14 +224,10 @@ sly实例中可支配元素为对象组成的数组。结构如下。
     // Item方式的导航
     sly.toStart(2); // 将第三个item拉至顶部。
     sly.toStart($items.eq(1), true); // 将第二个item拉至顶部，不使用动态效果。
-       
----
 
 #### #toCenter([target], [immediate])
 
 将目标元素居中，`toStart`中的例子同样适用于此。
-
----
 
 #### #moveBy(speed)
 
@@ -293,7 +281,7 @@ sly实例中可支配元素为对象组成的数组。结构如下。
     }); 
 ```
 ---
-### Events
+### Events事件
 [官方文档](https://github.com/darsain/sly/blob/master/docs/Events.md)
 
 通过实例初始化时写入回调：
